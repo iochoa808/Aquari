@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    
+    <title> Aquari </title>
+    
+    <style type="text/css">
+      canvas {
+        border: 1px solid black;
+      }
+      ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+      }
+      li {
+          margin: 5px 0;
+      }
+    </style>
+
+    <h1> Aquarium </h1>
+    <h3> Isaac Ochoa Garriga | u1978919</h3>
+
+    <script id="myVertexShader" 
+          type="x-shader/x-vertex">#version 300 es
+
+      uniform mat4 projectionMatrix;
+      uniform mat4 modelViewMatrix;
+      
+      in vec3 VertexPosition;
+      
+      void main()  {
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(VertexPosition, 1.0);
+
+      }
+    
+    </script>
+    
+    <script id="myFragmentShader" 
+          type="x-shader/x-fragment">#version 300 es
+
+      precision mediump float;
+      uniform vec4 myColor;
+      out vec4 fragmentColor;
+      void main() {
+
+        fragmentColor = myColor;
+
+      }
+    
+    </script>
+  
+    
+  </head>
+
+  <body>
+
+    <canvas id="myCanvas" width="800" height="800">
+      El Navegador no soporta HTML5
+    </canvas>
+
+    <script src = "gl-matrix-min.js"></script>
+    <script src = "objectes.js"></script>
+    <script src = "primitives.js"></script>
+    <script src = "main.js"></script>
+    
+    <br><br>
+    - Moviment de la camera amb WASD i ratolí (ho hi ha amunt/avall així sembla que la càmera neda)<br>
+    - Canvi de FOV amb SHIFT+MOUSE_WHEEL<br>
+    - Per canviar el mode de visualització prémer [R]<br>
+    - Prémer [SPACE] per obrir el baúl del tresor.<br>
+    - Prem [ENTER] per guardar fins a 9 POIs.
+    Tecles de l'u al nou [1-9] per recuperar POI.<br><br>
+    <strong>Model de visualitzacio: </strong><span id="renderMode">Wireframe amb polígons sòlids</span>
+    <br><br>
+    <strong>POI GUARDATS: </strong>
+    <ul id="POI"></ul>
+  </body>
+
+</html>
